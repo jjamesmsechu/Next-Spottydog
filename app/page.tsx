@@ -1,10 +1,10 @@
 import { LeftBar } from "./LeftBar/page"
-import { NavBar } from "./NavBar/page"
+import { Console } from "./Console/page";
 export default function Home() {
   return (
     <>
       <LeftBar></LeftBar>
-      <NavBar></NavBar>
+      <Console></Console>
     </>
   );
 }
