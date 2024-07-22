@@ -1,3 +1,5 @@
+
+
 export function Profile() {
     return (
       <>
@@ -7,7 +9,7 @@ export function Profile() {
           alt=""
           className="size-20 rounded-full mx-auto"
         />
-        <h1>Username</h1>
+        <h1>username</h1>
         </div>
         <div className="h-1/5">
         </div>
