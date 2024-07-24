@@ -4,9 +4,12 @@ import { LeftBar } from "../ui/home/LeftBar"
 import { Console } from "../ui/home/Console";
 import { RightBar } from "../ui/home/Rightbar";
 import { useSearchParams } from 'next/navigation'
+import { updateUsername, username, useStore } from "../service/zustand";
+import { Suspense } from "react";
 
-var username;
+
 export default function Home() {
+    
 
 
 
@@ -33,19 +36,21 @@ export default function Home() {
                         }).then(response => {
                             response.json().then(data => {
                                 console.log(data.display_name)
-                                username = data.display_name
-                            })
+                                console.log(username)
+        })
                         })
                     })
                 }
              )
+            //  updateUsername('data.display_name')
+
     
   return (
-    <>
+    <Suspense>
       <LeftBar></LeftBar>
       <Console></Console>
       <RightBar></RightBar>
-    </>
+    </Suspense>
   );
   
 }
