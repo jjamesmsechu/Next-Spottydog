@@ -4,20 +4,21 @@ import { LeftBar } from "../ui/home/LeftBar"
 import { Console } from "../ui/home/Console";
 import { RightBar } from "../ui/home/Rightbar";
 import { useSearchParams } from 'next/navigation'
-import { updateUsername, username, useStore } from "../service/zustand";
-import { Suspense } from "react";
+// import { updateUsername, username, useStore } from "../service/store";
+import { Suspense, useState } from "react";
+import { useUserStore } from "../service/store";
+
 
 
 export default function Home() {
-    
-
-
+    const changeName = useUserStore((state) => state.change)
 
     const searchParams = useSearchParams()
 
     var redirect_uri = "http://127.0.0.1:5500/spotprof.html"
     var code = searchParams.get('code')
     var grant_type ="authorization_code"
+    
 
     const params = {
         'grant_type': grant_type,
@@ -36,7 +37,8 @@ export default function Home() {
                         }).then(response => {
                             response.json().then(data => {
                                 console.log(data.display_name)
-                                console.log(username)
+                                changeName(data.display_name)                                
+                                // console.log(username)
         })
                         })
                     })

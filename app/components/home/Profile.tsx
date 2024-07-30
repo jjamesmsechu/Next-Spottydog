@@ -1,7 +1,7 @@
 'use client'
 
 import { getUserAuth } from "@/app/actions/actions";
-import { useStore } from "@/app/service/zustand";
+import { useStore } from "@/app/service/store";
 
 
 export function Profile() {

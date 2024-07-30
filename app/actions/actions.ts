@@ -1,7 +1,4 @@
 import { useSearchParams } from "next/navigation"
-import { useStore } from "zustand"
-// import { updateUsername } from "../service/zustand"
-
 
 // Fetch Bearer token to access user Data
   export const  getUserAuth = async () => {

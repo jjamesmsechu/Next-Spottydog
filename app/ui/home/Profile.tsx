@@ -1,6 +1,7 @@
-
+import { useUserStore } from "@/app/service/store";
 
 export function Profile() {
+  const username = useUserStore((state) => state.username)
     return (
       <>
       <div className="h-4/6">
@@ -9,7 +10,7 @@ export function Profile() {
           alt=""
           className="size-20 rounded-full mx-auto"
         />
-        <h1>username</h1>
+        <h1>{username}</h1>
         </div>
         <div className="h-1/5">
         </div>
