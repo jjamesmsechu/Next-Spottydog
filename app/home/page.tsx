@@ -5,7 +5,7 @@ import { Console } from "../ui/home/Console";
 import { RightBar } from "../ui/home/Rightbar";
 import { useSearchParams } from 'next/navigation'
 // import { updateUsername, username, useStore } from "../service/store";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useUserStore } from "../service/store";
 
 
@@ -25,7 +25,8 @@ export default function Home() {
         'code': code!,
         'redirect_uri': 'http://localhost:3000/home'
     } 
-        const response = fetch('https://accounts.spotify.com/api/token',
+    useEffect(() => {
+        const fetchUser = async () => {fetch('https://accounts.spotify.com/api/token',
             {method:'POST', 
              headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Authorization' : 'Basic YjU4NWQyNmNjOGYzNGQ0OTlmMTY2NmYyNmY3NDEwNWQ6YmRlZTMxODk0ZmQ1NGM0ZDljZDJkYjkzMTE4ZTdhMTE='},
              body:new URLSearchParams(params).toString()}).then(
@@ -43,7 +44,9 @@ export default function Home() {
                         })
                     })
                 }
-             )
+             )}
+             fetchUser()  
+    },[])
             //  updateUsername('data.display_name')
 
     
