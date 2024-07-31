@@ -20,31 +20,6 @@ import { useSearchParams } from "next/navigation"
          body:new URLSearchParams(params).toString()})
         }
 
-
-
-
-    //      .then(
-    //         response => {
-    //             response.json().then( data => {
-    //                 fetch('https://api.spotify.com/v1/me',{
-    //                     method : 'GET',
-    //                     headers : {'Authorization' : 'Bearer ' + data.access_token}
-    //                 }).then(response => {
-    //                     response.json().then(data => {
-    //                         // console.log(data.display_name)
-    //                         return data.display_name
-    //                     })
-    //                 })
-    //             })
-    //         }
-    //      )
-    // }
-
-
-
-
-
-
     // fetching user data 
     export const getUserData = async () => {
         const ress = getUserAuth();
@@ -56,12 +31,3 @@ import { useSearchParams } from "next/navigation"
         }).then((data) => data.json())
         return req
     }
-
-
-
-    // export const setUserData = async (name: string) => {
-
-    //     updateUsername(name)
-    //     updateUsername((await getUserData()).display_name)
-    //     console.log(username)
-    // }

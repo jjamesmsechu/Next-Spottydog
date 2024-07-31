@@ -2,12 +2,18 @@ import { create } from "zustand";
 
 type UserStore = {
     username : string
-    change: (arg0:string) => void
+    pfp : string
+    setPfp: (arg0:string) => void
+    setName: (arg0:string) => void
 }
 
 export const useUserStore = create<UserStore>((set) => ({
-    username: 'user',
-    change: (newName) => {
+    pfp: '',
+    username: '',
+    setPfp: (newPfp) => {
+        set({pfp:newPfp})
+    },
+    setName: (newName) => {
         set({username: newName })
     },
 }));

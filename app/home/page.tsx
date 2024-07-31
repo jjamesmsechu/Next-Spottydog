@@ -4,14 +4,15 @@ import { LeftBar } from "../ui/home/LeftBar"
 import { Console } from "../ui/home/Console";
 import { RightBar } from "../ui/home/Rightbar";
 import { useSearchParams } from 'next/navigation'
-// import { updateUsername, username, useStore } from "../service/store";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useUserStore } from "../service/store";
 
 
 
 export default function Home() {
-    const changeName = useUserStore((state) => state.change)
+    const setName = useUserStore((state) => state.setName)
+    const setPfp = useUserStore((state) => state.setPfp)
+    var render = useRef(false)
 
     const searchParams = useSearchParams()
 
@@ -26,29 +27,41 @@ export default function Home() {
         'redirect_uri': 'http://localhost:3000/home'
     } 
     useEffect(() => {
-        const fetchUser = async () => {fetch('https://accounts.spotify.com/api/token',
-            {method:'POST', 
-             headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Authorization' : 'Basic YjU4NWQyNmNjOGYzNGQ0OTlmMTY2NmYyNmY3NDEwNWQ6YmRlZTMxODk0ZmQ1NGM0ZDljZDJkYjkzMTE4ZTdhMTE='},
-             body:new URLSearchParams(params).toString()}).then(
-                response => {
-                    response.json().then( data => {
-                        fetch('https://api.spotify.com/v1/me',{
-                            method : 'GET',
-                            headers : {'Authorization' : 'Bearer ' + data.access_token}
-                        }).then(response => {
-                            response.json().then(data => {
-                                console.log(data.display_name)
-                                changeName(data.display_name)                                
-                                // console.log(username)
+        
+        const fetchUserData = async () => {
+
+            // Post request for access_token
+            fetch('https://accounts.spotify.com/api/token',
+                {method:'POST', 
+                headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Authorization' : 'Basic YjU4NWQyNmNjOGYzNGQ0OTlmMTY2NmYyNmY3NDEwNWQ6YmRlZTMxODk0ZmQ1NGM0ZDljZDJkYjkzMTE4ZTdhMTE='},
+                body:new URLSearchParams(params).toString()}).then(
+            response => {
+                response.json()
+
+            //Get request for user data then setting data
+            .then( data => {
+                fetch('https://api.spotify.com/v1/me',
+                    {method : 'GET',
+                    headers : {'Authorization' : 'Bearer ' + data.access_token}
+                        })
+                .then(response => {
+                    response.json()
+                .then(data => {
+                                setName(data.display_name)
+                                setPfp(data.images[1].url)
+                                render.current = true
+                                console.log(render.current)                                
         })
                         })
                     })
                 }
-             )}
-             fetchUser()  
-    },[])
-            //  updateUsername('data.display_name')
+             )
+            }
 
+            if (render.current == false){
+                fetchUserData()
+            }
+    },[])
     
   return (
     <Suspense>
