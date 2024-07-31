@@ -1,7 +1,4 @@
-'use client'
-
 import Link from "next/link"
-import path from "path"
 
 export const Settings = () => {
 

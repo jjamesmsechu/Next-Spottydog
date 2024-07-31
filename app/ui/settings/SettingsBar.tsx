@@ -7,7 +7,7 @@ export default function SettingsBar() {
     <h1>Settings</h1>
     <Link
         className=""
-        href="/"
+        href="/home"
       >
         <button type="button" className= " origin-bottom hover:bg-slate-700 border-2 border-slate-900 bg-slate-800 w-9/12 rounded-full mb-4">Home</button>
       </Link>

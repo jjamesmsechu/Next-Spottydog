@@ -1,15 +1,5 @@
 'use client'
-
-import { getUserAuth } from "@/app/actions/actions";
-import { useStore } from "@/app/service/store";
-
-
 export function Profile() {
-  // var username = useStore((state) => state.username)
-  // const updateUsername = useStore((state) => state.updateUsername)
-  // updateUsername(''+ getUserAuth())
-  // console.log(username)
-  // console.log(username)
     return (
       <>
       <div className="h-4/6">
