@@ -21,13 +21,11 @@ import { useSearchParams } from "next/navigation"
         }
 
     // fetching user data 
-    export const getUserData = async () => {
-        const ress = getUserAuth();
-
+    export const getUserData = async (access_token: string) => {
 
         var req = await fetch('https://api.spotify.com/v1/me',{
             method : 'GET',
-            headers : {'Authorization' : 'Bearer ' + ress }
+            headers : {'Authorization' : 'Bearer ' + access_token }
         }).then((data) => data.json())
         return req
     }

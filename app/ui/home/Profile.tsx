@@ -2,13 +2,13 @@
 import { useUserStore } from "@/app/service/store";
 
 export function Profile() {
-  const username = useUserStore((state) => state.username)
-  const pfp = useUserStore((state) => state.pfp)
+  const profilePicture = useUserStore((state) => state.profilePicture)
+  const username  = useUserStore((state) => state.username)
     return (
       <>
       <div className="h-4/6">
         <img
-          src={pfp}
+          src={profilePicture}
           alt=""
           className="size-20 rounded-full mx-auto"
         />
@@ -19,3 +19,4 @@ export function Profile() {
       </>
     );
 }
+  
