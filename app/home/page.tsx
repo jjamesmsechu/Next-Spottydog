@@ -19,15 +19,11 @@ export default function Home() {
 
   //checking if the access token has been fetched, and updating store with user data
   useEffect(  () => {
-    const sleepFunction = () => {
-      getUserData(access_token).then((response) => {
-        setPfp(response.images[1].url)
-        setName(response.display_name)
-      }
-    )
+    getUserData(access_token).then((response) => {
+      setPfp(response.images[1].url)
+      setName(response.display_name)
     }
-    setTimeout(sleepFunction,3000)
-  }, []
+  )  }, []
   )
 
   return (

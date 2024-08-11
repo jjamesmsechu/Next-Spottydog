@@ -27,10 +27,11 @@ export async function Login() {
 
         useEffect( () => {
              getAccessToken(searchParams.get('code')!.toString())
-             .then(response => setAccess_Token(response))
-
-             redirect('/home')
-          }, []);
+             .then(response => setAccess_Token(response)).then
+                      }, []);
+    }
+    if (access_token && searchParams.has('redirected')){
+      redirect('/home')
     }
     return (
       <>
@@ -39,7 +40,6 @@ export async function Login() {
       </div>
        <div className=" inline-block text-center w-3/5 h-screen bg-slate-700 rounded-lg">
        <button className="bg-green-500 hover:bg-green-300 m-auto text-white font-bold py-2 px-4 rounded" onClick={ClickHandler}>Login</button>
-       <p>Access token:{access_token} </p>
        </div>
       </>
     );
