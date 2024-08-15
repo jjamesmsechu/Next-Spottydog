@@ -54,7 +54,7 @@ export const useStore = create((set) => ({
 
   export const getAccessToken = async (code: string) => {
     const grant_type = 'authorization_code';
-    const redirect_uri = 'http://localhost:3000?redirected=true';
+    const redirect_uri = 'https://spottydog.vercel.app?redirected=true';
     const params = {
         grant_type,
         code: code!,
