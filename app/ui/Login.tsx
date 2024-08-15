@@ -20,7 +20,7 @@ export async function Login() {
 
 
     const ClickHandler = () => {
-      window.location.href = "https://accounts.spotify.com/authorize?client_id=b585d26cc8f34d499f1666f26f74105d&response_type=code&redirect_uri=http://localhost:3000?redirected=true"
+      window.location.href = "https://accounts.spotify.com/authorize?client_id=b585d26cc8f34d499f1666f26f74105d&response_type=code&redirect_uri=https://spottydog.vercel.app?redirected=true"
     }
     // Check if user has already logged in and fetch code
     if (searchParams.has('redirected')){
